@@ -1,0 +1,20 @@
+spring:
+  data:
+    jpa:
+      repositories:
+        enabled: true
+  datasource:
+    url: jdbc:mysql://localhost/usermodule
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+security:
+  user:
+    name: admin
+    password: admin
+logging:
+  config: logback.xml
+  level: org.springframework.web:INFO
