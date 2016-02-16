@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		   http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-autowire="byName" default-lazy-init="false">
+
+
+
+	<bean id="ipmap" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry>
+					<key><value>192.168.1.100</value></key>
+					<value>true</value>
+				</entry>
+				<entry key="192.168.1.109" value="true"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="jobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="group" value="job_work" />
+		<property name="name" value="job_work_name" />
+		<property name="targetObject">
+			<bean class="org.mythink.sprsch.job.MyTaskJob" />
+		</property>
+		<property name="targetMethod" value="executeJob" />
+		<property name="concurrent" value="false" /><!-- 作业不并发调度 -->
+	</bean>
+	<!-- 调度触发器 -->
+	<bean id="myTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="name" value="work_default_name" />
+		<property name="group" value="work_default" />
+		<property name="jobDetail">
+			<ref bean="jobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0/2 * * * * ?</value>
+		</property>
+	</bean>
+	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref local="myTrigger" />
+			</list>
+		</property>
+		<property name="autoStartup" value="false">
+		</property>
+	</bean>
+
+</beans> 

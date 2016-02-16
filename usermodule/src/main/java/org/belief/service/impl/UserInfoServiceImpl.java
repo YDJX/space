@@ -6,7 +6,11 @@ import org.belief.domain.UserInfo;
 import org.belief.domain.UserInfoRepository;
 import org.belief.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+@Component("userInfoService")
+@Transactional
 public class UserInfoServiceImpl implements UserInfoService {
 
 	private UserInfoRepository userInfoRepository;
@@ -22,20 +26,29 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public boolean addUser(UserInfo userinfo) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			userInfoRepository.saveAndFlush(userinfo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 	@Override
 	public List<UserInfo> showAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		return userInfoRepository.findAll();
 	}
 
 	@Override
 	public boolean delUser(UserInfo userinfo) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			userInfoRepository.delete(userinfo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 }

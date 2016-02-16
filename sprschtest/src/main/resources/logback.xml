@@ -1,0 +1,25 @@
+<configuration>
+
+	<property resource="sqlresource.properties" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+<!--  
+	<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+		<connectionSource
+			class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+			<driverClass>${database.driverclassname}</driverClass>
+			<url>${database.url}</url>
+			<user>${database.username}</user>
+			<password>${database.password}</password>
+		</connectionSource>
+	</appender>
+-->
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
