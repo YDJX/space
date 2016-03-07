@@ -10,11 +10,12 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
 security:
   user:
     name: admin
     password: admin
 logging:
   config: logback.xml
-  level: org.springframework.web:INFO
+  level: 
+    org.springframework.web: INFO

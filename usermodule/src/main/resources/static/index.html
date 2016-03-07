@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-table.css">
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<!-- <script src="js/jquery.min.js"></script> -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-table.min.js"></script>
+<script src="js/bootstrap-table-zh-CN.min.js"></script>
+</head>
+<body>
+this is index!!
+<a href="adduser.html" >添加用户</a>
+	<table id="table" data-toggle="table"
+			data-toolbar="#toolbar"
+    		data-search="true"
+           	data-show-refresh="true"
+           	data-show-toggle="true"
+           	data-show-columns="true"
+           	data-show-export="true"
+           	data-detail-view="true"
+           	data-detail-formatter="detailFormatter"
+           	data-minimum-count-columns="2"
+           	data-show-pagination-switch="true"
+           	data-pagination="true"
+           	data-id-field="id"
+           	data-method="get"
+           	data-page-list="[10, 25, 50, 100, ALL]"
+           	data-show-footer="false"
+           	data-side-pagination="client" 
+           	data-url="user/list">
+		<thead>
+	        <tr>
+	            <th data-checkbox="true" data-field="id">Item ID</th>
+	            <th data-field="userName">Item Name</th>
+	            <th data-field="userEmail">Email</th>
+	            <th data-field="telephoneNum">Telephone</th>
+	            <th data-field="mobileNum">Mobil</th>
+	            <th data-field="enabled">enabled</th>
+	        </tr>
+	    </thead>
+	</table>
+</body>
+</html>
